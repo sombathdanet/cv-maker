@@ -203,12 +203,16 @@ const formatDescription = (text: string) => {
 <style scoped>
 .resume-template {
   display: flex;
-  min-height: 100%;
-  width: 100%;
+  min-height: 1123px; /* A4 height at 96dpi */
+  max-height: 1123px;
+  height: 1123px;
+  width: 794px; /* A4 width at 96dpi */
   background: white;
   color: #333;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
+  overflow: hidden;
+  position: relative;
 }
 
 /* Left Column */
@@ -216,22 +220,44 @@ const formatDescription = (text: string) => {
   width: 33%;
   background-color: #1a365d; /* Dark blue background */
   color: white;
-  padding: 3rem 2rem;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Custom scrollbar for left column */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.left-column::-webkit-scrollbar {
+  width: 4px;
+}
+
+.left-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.left-column::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.left-column::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .profile-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .photo-container {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 1rem auto;
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -244,9 +270,9 @@ const formatDescription = (text: string) => {
 
 .name {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
   line-height: 1.2;
 }
 
@@ -254,11 +280,11 @@ const formatDescription = (text: string) => {
   width: 40px;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.4);
-  margin: 0 auto 1rem auto;
+  margin: 0 auto 0.75rem auto;
 }
 
 .title {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
@@ -266,21 +292,23 @@ const formatDescription = (text: string) => {
 }
 
 .left-section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .left-section-title {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: bold;
-  margin: 0 0 1.2rem 0;
+  margin: 0 0 0.75rem 0;
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .contact-details p {
-  font-size: 0.85rem;
-  margin: 0 0 0.8rem 0;
-  line-height: 1.5;
+  font-size: 0.75rem;
+  margin: 0 0 0.6rem 0;
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.9);
   word-wrap: break-word;
 }
@@ -337,40 +365,62 @@ const formatDescription = (text: string) => {
 .right-column {
   width: 67%;
   background-color: white;
-  padding: 3rem 3rem;
+  padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Custom scrollbar for right column */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(26, 54, 93, 0.3) transparent;
+}
+
+.right-column::-webkit-scrollbar {
+  width: 4px;
+}
+
+.right-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.right-column::-webkit-scrollbar-thumb {
+  background: rgba(26, 54, 93, 0.3);
+  border-radius: 2px;
+}
+
+.right-column::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 54, 93, 0.5);
 }
 
 .right-section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .right-section-title {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #1a1a1a;
-  margin: 0 0 1.2rem 0;
+  margin: 0 0 0.8rem 0;
 }
 
 .summary-text {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .experience-item,
 .education-item {
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.2rem;
 }
 
 .item-title {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #1a1a1a;
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 0.25rem 0;
 }
 
 .item-date {
@@ -378,35 +428,35 @@ const formatDescription = (text: string) => {
   text-transform: uppercase;
   color: #888;
   letter-spacing: 0.5px;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
   font-weight: 500;
 }
 
 .item-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #333;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.4rem 0;
 }
 
 .item-description {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .item-description :deep(ul) {
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 0.3rem 0 0.3rem 0;
   padding-left: 1.25rem;
   list-style-type: disc;
 }
 
 .item-description :deep(li) {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 }
 
 .item-description :deep(p) {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.3rem 0;
 }
 
 /* Print layout optimizations */
